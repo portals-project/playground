@@ -1,0 +1,129 @@
+body {
+  line-height: 1.5rem;
+  color: #000000;
+  font-family: source sans pro;
+  font-size: 1.0rem;
+}
+
+div.maindiv {
+  background-color: #ececec;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 1.0rem;
+}
+
+h1,
+h2,
+h3,
+nav {
+  font-family: open sans;
+  letter-spacing: 0.10rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  color: #000000;
+  font-weight: bold;
+}
+
+footer>a {
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  color: #0004ff;
+}
+
+a.navbar-brand,
+a:hover {
+  color: #000000;
+}
+
+nav {
+  border-width: 0 0 2px 0;
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+
+nav ul {
+  padding: 0px;
+}
+
+nav ul li.active {
+  text-decoration: underline;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+footer {
+  border: solid #1b2b52;
+  border-width: 2px 0 0 0;
+  position: absolute;
+  bottom: 0;
+}
+
+a.run-btn {
+  background-color: #0004ff;
+  color: white;
+  padding: 0px 32px;
+  border-radius: 10px;
+}
+
+a.run-btn:hover {
+  color: #0004ff;
+  background-color: #ffffff;
+}
+
+h3.portalsjs-highlight {
+  color: #0004ff;
+  margin: 0;
+  border-bottom: 3px solid #ddd;
+  background-color: #f7f7f7;
+}
+
+div.CodeMirror {
+  height: 100% !important;
+}
+
+a.dropdown-it {
+  display: block;
+  padding: .25rem 0.5rem;
+  text-align: inherit;
+}
+
+div.dropdown-menu {
+  border-radius: 0;
+  padding: 0;
+}
+
+div.dropdown-divider {
+  margin: 0;
+}
+
+div.code-box {
+  padding-bottom: 30;
+}

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="google-site-verification" content="a1ADv8ZqFqpPyedHSmCzSp2Z0LnwFklNIdHWR03AIzY" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Portals-Project">
+  <title>Portals Playground</title>
+
+  <!-- BOOTSTRAP CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <!-- PORTALS WEBSITE CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="assets-playground/css/playground.css">
+
+  <!-- CODEMIRROR CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css"
+    integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <div class="container-fluid vh-100">
+    <div class="row vh-100">
+      <div class="col-12  maindiv vh-100">
+
+        <!-- NAV BAR -->
+        <nav>
+          <a class="navbar-brand">Portals Playground</a>
+          <ul>
+            <li><a class="run-btn" id="run-button">Run ⏵</a></li>
+            <li><a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Code Examples
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-it" a href="javascript:helloVLDBExample()">Hello VLDB</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-it" a href="javascript:rangeFilterExample()">Range Filter</a>
+                <a class="dropdown-it" a href="javascript:mapExample()">Simple Map</a>
+                <a class="dropdown-it" a href="javascript:simpleRecursiveExample()">Simple Recursive</a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- CONTENT -->
+        <div class="content h-75">
+          <div class="row justify-content-center h-100">
+            <div class="row col-12 h-100">
+              <div class="col-6 h-100">
+                <h3 class="portalsjs-highlight">PortalsJS Code Editor</h3>
+                <div id="js-code" class="code-box h-100"></div>
+              </div>
+              <div class="preview col-6 h-100">
+                <h3 class="portalsjs-highlight">Log Output</h3>
+                <div id="console-log" class="code-box h-100"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+          © Portals-Project Committee, 2022.
+          <a href=" https://github.com/portals-project" title="GitHub"><i class="fa fa-github"
+              aria-hidden="true"></i></a>
+          <br />
+          <a href="https://github.com/portals-project">https://github.com/portals-project</a>
+        </footer>
+
+      </div>
+
+
+      <!-- CODEMIRROR JS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"
+        integrity="sha512-8RnEqURPUc5aqFEN04aQEiPlSAdE0jlFS/9iGgUyNtwFnSKCXhmB6ZTNl7LnDtDWKabJIASzXrzD0K+LYexU9g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/javascript/javascript.min.js"
+        integrity="sha512-I6CdJdruzGtvDyvdO4YsiAq+pkWf2efgd1ZUSK2FnM/u2VuRASPC7GowWQrWyjxCZn6CT89s3ddGI+be0Ak9Fg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/hint/javascript-hint.min.js"
+        integrity="sha512-omIxBxPdObb7b3giwJtPBiB86Mey/ds7qyKFcRiaLQgDxoSR+UgCYEFO7jRZzPOCZAICabGCraEhOSa71U1zFA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/lint/javascript-lint.min.js"
+        integrity="sha512-8kwyIAPFqkeXy+ZFifnFBF57n5pSsXBBWuy9ME1hPCku0evC+UFNnWZOJlITFe/OMSxGi/oWaccjZ07L6YXzJA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+      <!-- BOOTSTRAP JS -->
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+        crossorigin="anonymous"></script>
+
+
+      <!-- PORTALSJS -->
+      <script src="assets-playground/js/main.js"></script>
+
+
+      <!-- EXAMPLE PROGRAMS -->
+      <script>
+        //////////////////////////////////////////////////////////////////////////////
+        // DEFAULT AND EXAMPLE PROGRAMS
+        //////////////////////////////////////////////////////////////////////////////
+
+        var __helloVLDBExample__ =
+          'var builder = PortalsJS.ApplicationBuilder("helloVLDB")\n' +
+          'var _ = builder.workflows\n' +
+          '  .source(builder.generators.fromArray(["Hello VLDB!"]).stream)\n' +
+          '  .logger()\n' +
+          `  .sink()\n` +
+          '  .freeze()\n' +
+          'var helloVLDB = builder.build()\n' +
+          'var system = PortalsJS.System()\n' +
+          'system.launch(helloVLDB)\n' +
+          'system.stepUntilComplete()\n'
+
+        var __rangFilterExample__ =
+          'var builder = PortalsJS.ApplicationBuilder("rangeFilter")\n' +
+          'var _ = builder.workflows\n' +
+          '  .source(builder.generators.fromRange(0, 1024, 8).stream)\n' +
+          '  .filter(x => x % 2 == 0)\n' +
+          '  .logger()\n' +
+          `  .sink()\n` +
+          '  .freeze()\n' +
+          'var rangeFilter = builder.build()\n' +
+          'var system = PortalsJS.System()\n' +
+          'system.launch(rangeFilter)\n' +
+          'system.stepUntilComplete()\n'
+
+        var __mapExample__ =
+          'var builder = PortalsJS.ApplicationBuilder("map")\n' +
+          'var _ = builder.workflows\n' +
+          '  .source(builder.generators.fromRange(0, 128, 8).stream)\n' +
+          '  .map(ctx => x => [x, x.toString().length])\n' +
+          '  .logger()\n' +
+          `  .sink()\n` +
+          '  .freeze()\n' +
+          'var map = builder.build()\n' +
+          'var system = PortalsJS.System()\n' +
+          'system.launch(map)\n' +
+          'system.stepUntilComplete()\n'
+
+        var __simpleRecursiveExample__ =
+          'var builder = PortalsJS.ApplicationBuilder("simpleRecursive")\n' +
+          'var gen = builder.generators.fromArray([10])\n' +
+          'var seq = builder.sequencers.random()\n' +
+          'var recursiveWorkflow = builder.workflows\n' +
+          '  .source(seq.stream)\n' +
+          '  .processor(ctx => x => {\n' +
+          '    if (x > 0) {\n' +
+          '      ctx.emit(x - 1)\n' +
+          '    }\n' +
+          '  })\n' +
+          '  .logger()\n' +
+          `  .sink()\n` +
+          '  .freeze()\n' +
+          'var _ = builder.connections.connect(gen.stream, seq)\n' +
+          'var _ = builder.connections.connect(recursiveWorkflow.stream, seq)\n' +
+          'var simpleRecursive = builder.build()\n' +
+          'var system = PortalsJS.System()\n' +
+          'system.launch(simpleRecursive)\n' +
+          'system.stepUntilComplete()\n'
+      </script>
+
+
+      <!-- SETUP CODEMIRROR and EXAMPLE SWAPS -->
+      <script>
+        //////////////////////////////////////////////////////////////////////////////
+        // CODE EDITORS AND RUNNING SCRIPTS
+        //////////////////////////////////////////////////////////////////////////////
+
+        // CATCH LOG CALLS TO CONSOLE LOG
+        console.stdlog = console.log.bind(console);
+        console.logs = [];
+        console.log = function () {
+          console.logs.push(Array.from(arguments));
+          console.stdlog.apply(console, arguments);
+        }
+
+        // THE JAVASCRIPT EDITOR
+        var jsEditor = CodeMirror(document.querySelector("#js-code"), {
+          value: __helloVLDBExample__,
+          mode: "javascript",
+          tabSize: 4,
+          lineNumbers: true,
+        });
+
+        // THE LOG OUTPUT, READ ONLY
+        var logOutput = CodeMirror(document.querySelector("#console-log"), {
+          value: "",
+          mode: "text",
+          tabSize: 4,
+          lineNumbers: true,
+          readOnly: true,
+        });
+
+        // RUN THE CODE IN THE jsEditor
+        document.querySelector("#run-button").addEventListener("click", function () {
+          let jsCode = jsEditor.getValue();
+          console.logs = [];
+          var res = eval(jsCode);
+          // PRINT THE LOG CALLS TO THE OUTPUT BOX
+          logOutput.setValue(console.logs.join('\n'));
+        });
+
+        // SWAPPING EXAMPLE PROGRAMS:
+
+        function helloVLDBExample() {
+          jsEditor.setValue(__helloVLDBExample__);
+        }
+
+        function rangeFilterExample() {
+          jsEditor.setValue(__rangFilterExample__);
+        }
+
+        function mapExample() {
+          jsEditor.setValue(__mapExample__);
+        }
+
+        function simpleRecursiveExample() {
+          jsEditor.setValue(__simpleRecursiveExample__);
+        }
+      </script>
+
+
+      <!-- ALERT UNDER CONSTRUCTION -->
+      <script>
+        alert("The Portals Playground is currently under construction. Some functionality is missing, and there are currently no error messages.")
+      </script>
+    </div>
+
+  </div>
+  </div>
+</body>
+
+</html>
