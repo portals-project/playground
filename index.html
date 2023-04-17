@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta name="google-site-verification" content="a1ADv8ZqFqpPyedHSmCzSp2Z0LnwFklNIdHWR03AIzY" />
@@ -224,9 +224,15 @@
         document.querySelector("#run-button").addEventListener("click", function () {
           let jsCode = jsEditor.getValue();
           console.logs = [];
-          var res = eval(jsCode);
           // PRINT THE LOG CALLS TO THE OUTPUT BOX
-          logOutput.setValue(console.logs.join('\n'));
+          try {
+            eval(jsCode);
+            // PRINT THE LOG CALLS TO THE OUTPUT BOX
+            logOutput.setValue(console.logs.join('\n'));
+          } catch (error) {
+            // DISPLAY ERROR MESSAGE IN THE OUTPUT BOX
+            logOutput.setValue(`Error: ${error.message}`);
+          }
         });
 
         // SWAPPING EXAMPLE PROGRAMS:
@@ -254,8 +260,6 @@
         alert("The Portals Playground is currently under construction. Some functionality is missing, and there are currently no error messages.")
       </script>
     </div>
-
-  </div>
   </div>
 </body>
 
