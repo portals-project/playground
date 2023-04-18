@@ -221,18 +221,40 @@
         });
 
         // RUN THE CODE IN THE jsEditor
+
+        let worker = null; // Store the current web worker
+
+        // Add event listener to the "run-button"
         document.querySelector("#run-button").addEventListener("click", function () {
-          let jsCode = jsEditor.getValue();
-          console.logs = [];
-          // PRINT THE LOG CALLS TO THE OUTPUT BOX
-          try {
-            eval(jsCode);
-            // PRINT THE LOG CALLS TO THE OUTPUT BOX
-            logOutput.setValue(console.logs.join('\n'));
-          } catch (error) {
-            // DISPLAY ERROR MESSAGE IN THE OUTPUT BOX
-            logOutput.setValue(`Error: ${error.message}`);
+          // Clear the console log
+          logOutput.setValue("");
+
+          if (worker) {
+            // If there is a current web worker, terminate it before creating a new one
+            worker.terminate();
           }
+          // Clear the log output
+          // Create a new web worker from the "worker.js" file
+          worker = new Worker('src/worker.js');
+
+          let jsCode = jsEditor.getValue();
+
+          // Add event listener to receive messages from the web worker
+          worker.addEventListener('message', function (e) {
+            let message = e.data;
+            if (message.type === 'log') {
+              // Append the console log to the log output
+              logOutput.setValue(logOutput.getValue() + message.data + '\n');
+            } else if (message.type === 'logsEnd') {
+              // Signal from worker indicating end of logs
+              // Do any cleanup or additional processing here
+              worker.terminate(); // Terminate the web worker after logs are done
+              worker = null; // Set the current web worker to null
+            }
+          });
+
+          // Send the JavaScript code to the web worker
+          worker.postMessage(jsCode);
         });
 
         // SWAPPING EXAMPLE PROGRAMS:
