@@ -40,18 +40,34 @@ document.querySelector("#run-button").addEventListener("click", function () {
         // If there is a current web worker, terminate it before creating a new one
         worker.terminate();
     }
-    // Clear the log output
     // Create a new web worker from the "worker.js" file
     worker = new Worker('src/worker.js');
 
     let jsCode = jsEditor.getValue();
 
+    let countLines = 0;
+    const maxLines = 1024;
+
     // Add event listener to receive messages from the web worker
     worker.addEventListener('message', function (e) {
         let message = e.data;
         if (message.type === 'log') {
+
+            // Get the current log output
+            var currentLog = logOutput.getValue();
+
+            if (countLines >= maxLines) {
+                // If the line count exceeds the maximum, get rid of the first line
+                let firstNewLine = currentLog.indexOf('\n');
+                logOutput.setValue(currentLog.substring(firstNewLine + 1));
+            }
+
             // Append the console log to the log output
-            logOutput.setValue(logOutput.getValue() + message.data + '\n');
+            logOutput.setValue(currentLog + message.data + '\n');
+            // Increment the line count
+            countLines++;
+            logOutput.setCursor(countLines)
+
         } else if (message.type === 'logsEnd') {
             // Signal from worker indicating end of logs
             // Do any cleanup or additional processing here
