@@ -16,7 +16,7 @@ self.addEventListener('message', function (e) {
         eval(jsCode);
     } catch (error) {
         // Catch any errors that occur during execution
-        console.error(error);
+        self.postMessage({ type: 'error', data: error.toString() });
     }
 
     // Send a signal to indicate the end of logs

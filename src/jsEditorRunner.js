@@ -48,31 +48,45 @@ document.querySelector("#run-button").addEventListener("click", function () {
     let countLines = 0;
     const maxLines = 1024;
 
+    // Declare a variable to store the current log output
+    let currentLog = '';
+    let loggingInterval = null;
+
     // Add event listener to receive messages from the web worker
     worker.addEventListener('message', function (e) {
-        let message = e.data;
-        if (message.type === 'log') {
+        const message = e.data;
 
-            // Get the current log output
-            var currentLog = logOutput.getValue();
+        // If loggingInterval is null, start it
+        if (loggingInterval === null) {
+            // Every 100 ms, update the log output
+            function updateLogOutput() {
+                logOutput.setValue(currentLog); // Set the log output to the current log
+                logOutput.setCursor(logOutput.lineCount()); // Set the cursor to the end of the log output
+            }
+            loggingInterval = setInterval(updateLogOutput, 100);
+        }
 
+        // Append the console log or error to the log output
+        if (message.type === 'log' || message.type === 'error') {
+            // Check if the line count exceeds the maximum
             if (countLines >= maxLines) {
-                // If the line count exceeds the maximum, get rid of the first line
-                let firstNewLine = currentLog.indexOf('\n');
-                logOutput.setValue(currentLog.substring(firstNewLine + 1));
+                // Get rid of the first line if the line count exceeds the maximum
+                const firstNewLine = currentLog.indexOf('\n');
+                currentLog = currentLog.substring(firstNewLine + 1);
             }
 
-            // Append the console log to the log output
-            logOutput.setValue(currentLog + message.data + '\n');
+            // Append the console log or error to the log output
+            currentLog += message.type === 'error' ? `Error: ${message.data}` : `${message.data}\n`;
+
             // Increment the line count
             countLines++;
-            logOutput.setCursor(countLines)
+        }
 
-        } else if (message.type === 'logsEnd') {
-            // Signal from worker indicating end of logs
-            // Do any cleanup or additional processing here
+        // Terminate the web worker and clear the interval after logs are done
+        if (message.type === 'error' || message.type === 'logsEnd') {
             worker.terminate(); // Terminate the web worker after logs are done
             worker = null; // Set the current web worker to null
+            setTimeout(() => clearInterval(loggingInterval), 200); // Delay clearing the interval to allow the last log to be displayed
         }
     });
 
