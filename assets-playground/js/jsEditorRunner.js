@@ -41,7 +41,7 @@ document.querySelector("#run-button").addEventListener("click", function () {
         worker.terminate();
     }
     // Create a new web worker from the "worker.js" file
-    worker = new Worker('src/worker.js');
+    worker = new Worker('assets-playground/js/worker.js');
 
     let jsCode = jsEditor.getValue();
 

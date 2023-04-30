@@ -1,5 +1,5 @@
 
-importScripts('../assets-playground/js/main.js');
+importScripts('main.js');
 
 self.addEventListener('message', function (e) {
     let jsCode = e.data;
