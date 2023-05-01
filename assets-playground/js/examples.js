@@ -1,3 +1,5 @@
+// EXAMPLE PROGRAMS:
+
 var __helloVLDBExample__ =
     'var builder = PortalsJS.ApplicationBuilder("helloVLDB")\n' +
     'var _ = builder.workflows\n' +
@@ -56,3 +58,46 @@ var __simpleRecursiveExample__ =
     'var system = PortalsJS.System()\n' +
     'system.launch(simpleRecursive)\n' +
     'system.stepUntilComplete()\n'
+
+var __sleepingBeautyExample__ =
+    'function sleep(milliseconds) {\n' +
+    '  const start = Date.now();\n' +
+    '  while (Date.now() - start < milliseconds) {}\n' +
+    '}\n' +
+    'let builder = PortalsJS.ApplicationBuilder("sleepingBeauty")\n' +
+    'let _ = builder.workflows\n' +
+    '  .source(builder.generators.fromRange(0, 1024, 2).stream)\n' +
+    '  .map(ctx => x => {\n' +
+    '       sleep(500);\n' +
+    '       return x;\n' +
+    '  })\n' +
+    '  .logger()\n' +
+    `  .sink()\n` +
+    '  .freeze()\n' +
+    'let sleepingBeauty = builder.build()\n' +
+    'let system = PortalsJS.System()\n' +
+    'system.launch(sleepingBeauty)\n' +
+    'system.stepUntilComplete()\n'
+
+
+// SWAPPING EXAMPLE PROGRAMS:
+
+function helloVLDBExample() {
+    jsEditor.setValue(__helloVLDBExample__);
+}
+
+function rangeFilterExample() {
+    jsEditor.setValue(__rangFilterExample__);
+}
+
+function mapExample() {
+    jsEditor.setValue(__mapExample__);
+}
+
+function simpleRecursiveExample() {
+    jsEditor.setValue(__simpleRecursiveExample__);
+}
+
+function sleepingBeautyExample() {
+    jsEditor.setValue(__sleepingBeautyExample__);
+}
