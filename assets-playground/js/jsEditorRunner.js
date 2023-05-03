@@ -132,21 +132,3 @@ runButton.addEventListener("click", function () {
 
     sendCodeToWorker(jsEditor.getValue());
 });
-
-// SWAPPING EXAMPLE PROGRAMS:
-
-function helloVLDBExample() {
-    jsEditor.setValue(__helloVLDBExample__);
-}
-
-function rangeFilterExample() {
-    jsEditor.setValue(__rangFilterExample__);
-}
-
-function mapExample() {
-    jsEditor.setValue(__mapExample__);
-}
-
-function simpleRecursiveExample() {
-    jsEditor.setValue(__simpleRecursiveExample__);
-}
