@@ -79,6 +79,18 @@ var __sleepingBeautyExample__ =
     'system.launch(sleepingBeauty)\n' +
     'system.stepUntilComplete()\n'
 
+var __billionEvents__ =
+    'var builder = PortalsJS.ApplicationBuilder("billionEvents")\n' +
+    'var _ = builder.workflows\n' +
+    '  .source(builder.generators.fromRange(0, 1024*1024*1024, 1024*1024).stream)\n' +
+    '  .filter(x => x % (1024*1024) == 0)\n' +
+    '  .logger()\n' +
+    `  .sink()\n` +
+    '  .freeze()\n' +
+    'var billionEvents = builder.build()\n' +
+    'var system = PortalsJS.System()\n' +
+    'system.launch(billionEvents)\n' +
+    'system.stepUntilComplete()\n'
 
 // SWAPPING EXAMPLE PROGRAMS:
 
@@ -100,4 +112,8 @@ function simpleRecursiveExample() {
 
 function sleepingBeautyExample() {
     jsEditor.setValue(__sleepingBeautyExample__);
+}
+
+function billionEventsExample() {
+    jsEditor.setValue(__billionEvents__);
 }
