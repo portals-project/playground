@@ -122,12 +122,18 @@
 
 
       <!-- EXAMPLE PROGRAMS -->
-      <script src="assets-playground/js/examples.js"></script>
-
-
-      <!-- SETUP CODEMIRROR and EXAMPLE SWAPS -->
-      <script src="assets-playground/js/jsEditorRunner.js"></script>
-
+      <!-- EXAMPLE PROGRAMS -->
+      <script>
+        function appendScriptWithTimestamp(scriptSrc) {
+          var scriptElement = document.createElement('script');
+          scriptElement.src = scriptSrc + '?v=' + Date.now();
+          document.head.appendChild(scriptElement);
+        }
+        // Example Programs
+        appendScriptWithTimestamp('assets-playground/js/examples.js');
+        // Setup Codemirror and Example Swaps
+        appendScriptWithTimestamp('assets-playground/js/jsEditorRunner.js');
+      </script>
 
       <!-- ALERT UNDER CONSTRUCTION -->
       <script>
