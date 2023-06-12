@@ -1,5 +1,4 @@
-
-importScripts('portals-js.js');
+importScripts('portals-js.js?v=0.1');
 
 self.addEventListener('message', function (e) {
     let jsCode = e.data;
