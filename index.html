@@ -31,6 +31,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css"
     integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- custom bootstrap-like utility CSS -->
+  <style>
+  @media (min-width: 768px) {
+    .h-md-100 {
+      height: 100% !important;
+    }
+  }
+  </style>
 </head>
 
 <body>
@@ -72,11 +81,11 @@
         <div class="content h-75">
           <div class="row justify-content-center h-100">
             <div class="row col-12 h-100">
-              <div class="col-6 h-100">
+              <div class="col-12 h-50 col-md-6 h-md-100">
                 <h3 class="portalsjs-highlight">PortalsJS Code Editor</h3>
                 <div id="js-code" class="code-box h-100"></div>
               </div>
-              <div class="preview col-6 h-100">
+              <div class="preview col-12 h-50 mt-5 col-md-6 h-md-100 mt-md-0">
                 <h3 class="portalsjs-highlight">Log Output</h3>
                 <div id="console-log" class="code-box h-100"></div>
               </div>
