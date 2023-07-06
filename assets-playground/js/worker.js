@@ -4,9 +4,7 @@ self.addEventListener('message', function (e) {
     let jsCode = e.data;
 
     // Override console.log to capture logs and send them to the main thread
-    const originalConsoleLog = console.log;
     console.log = function (...args) {
-        originalConsoleLog.apply(console, args);
         self.postMessage({ type: 'log', data: args.join(' ') }); // Send the logs to the main thread joined with a space
     };
 
