@@ -3,6 +3,7 @@ body {
   color: #000000;
   font-family: source sans pro;
   font-size: 1.0rem;
+  background-color: #ececec;
 }
 
 div.maindiv {
@@ -58,6 +59,7 @@ a {
 a.navbar-brand,
 a:hover {
   color: #000000;
+  cursor: pointer;
 }
 
 nav {
@@ -84,6 +86,7 @@ footer {
   border-width: 2px 0 0 0;
   position: absolute;
   bottom: 0;
+  z-index: 100;
 }
 
 a.run-btn {
@@ -126,4 +129,11 @@ div.dropdown-divider {
 
 div.code-box {
   padding-bottom: 30;
+}
+
+/* Custom bootstrap-like utility CSS. Adjust height to for screens larger than md */
+@media (min-width: 768px) {
+  .h-md-100 {
+    height: 100% !important;
+  }
 }
