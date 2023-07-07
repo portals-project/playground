@@ -58,9 +58,8 @@ function resetValues() {
     running = false;
     countLines = 0;
     currentLog = '';
-    loggingInterval = null;
-    clearInterval(timer);
     clearInterval(loggingInterval);
+    loggingInterval = null;
     logOutput.setValue(currentLog);
 }
 
@@ -96,6 +95,8 @@ function handleWorkerMessage(e) {
 
     // Terminate the web worker and clear the interval after logs are done
     if (message.type === 'error' || message.type === 'logsEnd') {
+        logOutput.setValue(currentLog);
+        logOutput.setCursor(logOutput.lineCount());
         setTimeout(() => clearInterval(loggingInterval), 200); // Delay clearing the interval to allow the last log to be displayed
         clearInterval(timer); // Clear the timer
         running = false;
@@ -104,6 +105,7 @@ function handleWorkerMessage(e) {
 
 // Start a timer to terminate the web worker after a certain duration
 function startTimer() {
+    clearInterval(timer);
     timer = setTimeout(function () {
         if (running) {
             // If the worker is still running after timeout, terminate it
