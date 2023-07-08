@@ -102,16 +102,7 @@ a.run-btn:hover {
 }
 
 a.share-btn {
-  background-color: #0004ff;
-  color: white;
-  padding: 0px 5px;
-  border-radius: 5px;
   float: right;
-}
-
-a.share-btn:hover {
-  color: #0004ff;
-  background-color: #ffffff;
 }
 
 h3.portalsjs-highlight {
