@@ -287,6 +287,39 @@ var __registryExample__ =
     'system.launch(app2)\n' +
     'system.stepUntilComplete()\n'
 
+var __wordCountExample__ =
+    `let hashCode = str => {\n` +
+    '  var hash = 0;\n' +
+    '  for (var i = 0; i < str.length; i++) {\n' +
+    '    let c = str.charCodeAt(i);\n' +
+    '    hash = ((hash << 5) - hash) + c;\n' +
+    '    hash = hash & hash;\n' +
+    '    return hash;\n' +
+    '  }\n' +
+    '}\n' +
+    `\n` +
+    'let builder = PortalsJS.ApplicationBuilder("application")\n' +
+    `\n` +
+    'let input = ["the quick brown fox jumps over the lazy dog"]\n' +
+    'let generator = builder.generators.fromArray(input)\n' +
+    `\n` +
+    'let _ = builder.workflows\n' +
+    '  .source(generator.stream)\n' +
+    '  .flatMap(ctx => line => line.split(/\\s+/))\n' +
+    '  .map(ctx => word => [word, 1])\n' +
+    '  .key(pair => { return hashCode(pair[0]); })\n' +
+    '  .processor(ctx => x => {\n' +
+    '    let count = PortalsJS.PerKeyState("count", 0, ctx);\n' +
+    '    count.set(count.get() + x[1]);\n' +
+    '    ctx.emit([x[0], count.get()]);\n' +
+    '  })\n' +
+    '  .sink()\n' +
+    '  .freeze()\n' +
+    `\n` +
+    'let system = PortalsJS.System()\n' +
+    'system.launch(builder.build())\n' +
+    'system.stepUntilComplete()\n'
+
 // SWAPPING EXAMPLE PROGRAMS:
 
 function helloVLDBExample() {
@@ -331,4 +364,8 @@ function portalServiceExample() {
 
 function registryExample() {
     jsEditor.setValue(__registryExample__);
+}
+
+function wordCountExample() {
+    jsEditor.setValue(__wordCountExample__);
 }
