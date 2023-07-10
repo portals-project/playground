@@ -313,6 +313,7 @@ var __wordCountExample__ =
     '    count.set(count.get() + x[1]);\n' +
     '    ctx.emit([x[0], count.get()]);\n' +
     '  })\n' +
+    '  .logger()\n' +
     '  .sink()\n' +
     '  .freeze()\n' +
     `\n` +
